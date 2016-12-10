@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+    <constant name="struts.action.extension" value="action,do,"></constant>
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+
+    <package name="default" namespace="/" extends="struts-default">
+		<global-results>
+			 <result name="error">/error.jsp</result>
+		</global-results>
+       	<action name="*_*" class="com.action.{1}Action" method="{2}">
+       		<result name="judgeSuccess" type="redirect">admin/${page}.jsp  </result>
+       		<result name="printError" type="redirect">admin/${page}.jsp </result>
+       		<result name="printSuccess" type="dispatcher">${nextPage}.jsp </result>
+       		<result name="printfkcSuccess" type="dispatcher">${nextPage}.jsp </result>
+       		<result name="BTSuccess" type="dispatcher">${nextPage}.jsp </result>
+       		<result name="Success">transfer/${page}success.jsp</result>
+       		<result name="Fail">transfer/${page}fail.jsp</result>
+       		<result name="ManageSuccess" type="dispatcher">manage/{page}.jsp</result>
+       	</action>
+       	
+    </package>
+    <!-- <package name="MyPackage" extends="struts-default">
+    	<default-action-ref name="notFound">
+    		<action name="notFound" class="com.test.action.ForwardAction" method="notFound">
+    			<result>/error.jsp</result>
+    		</action>
+    	</default-action-ref>
+    </package> -->
+    
+</struts>
